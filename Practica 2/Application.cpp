@@ -10,11 +10,6 @@ HIDPs Control(T);
 HIDWii Control(T);
 #endif
 
-VOID CALLBACK TimerCallBack()
-{
-	Control.Actualiza(); //Actualiza nuestro HID
-	GeneraEfectos(&Control);//Genera los efectos en la aplicación en función de los gestos del control
-}
 void GeneraEfectos(HIDXBox* Control)
 {
 	POINT pt, pt0;
@@ -35,7 +30,9 @@ void GeneraEfectos(HIDXBox* Control)
 		SetCursorPos(pt.x, pt.y);
 	}
 
-
-
-
+}
+VOID CALLBACK TimerCallBack()
+{
+	Control.Actualiza(); //Actualiza nuestro HID
+	GeneraEfectos(&Control);//Genera los efectos en la aplicación en función de los gestos del control
 }

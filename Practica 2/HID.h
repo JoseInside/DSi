@@ -15,8 +15,9 @@ class HID
 	};
 public:
 	bool bConected; //Mando Conectado
+
 	//Gets & Sets
-	bool gBU(ushort bit); //Estado del Boton codificado en bit
+	bool gBU(ushort bit) { return wButtons & bit; } //Estado del Boton codificado en bit
 	float gLT() { return fLeftTrigger; }//Left Triger [0,1]
 	float gRT() { return fRightTrigger; } //Right Triger [0,1]
 	float gLJX() { return fThumbLX; } //LeftJoyX [-1,1]
@@ -27,20 +28,22 @@ public:
 	float gLJYf() { return fThumbLYf; } //LeftJoyYfiltered [-1,1]
 	float gRJXf() { return fThumbRXf; } //RightJoyXfiltered [-1,1]
 	float gRJYf() { return fThumbRYf; } //RigthJoyYfiltered [-1,1]
-	void sLR(float cantidad, float tiempo) { cantidad = fLeftVibration; tiempo = tLR; } //LeftRumble [0,1]: cantidad [0,1], tiempo [0,inf]
-	void sRR(float cantidad, float tiempo) { cantidad = fRightVibration; tiempo = tRR; } //RightRumble [0,1]: cantidad [0,1], tiempo [0,inf]
+
+	void sLR(float cantidad, float tiempo) { fLeftVibration = cantidad; tLR = tiempo; } //LeftRumble [0,1]: cantidad [0,1], tiempo [0,inf]
+	void sRR(float cantidad, float tiempo) { fRightVibration = cantidad; tRR = tiempo; } //RightRumble [0,1]: cantidad [0,1], tiempo [0,inf]
+
 	//Gestos
-	bool BD(ushort Bit); //Boton Down codificado en Bit
-	bool BU(ushort Bit); //Boton Up codificado en Bit
-	bool GRLJ(); //Gesto de Rotación del LeftJoy
-	HID(float t) //Constructor que recoge el periodo de muestreo
-	{
-		T = t / 1000; //Periodo de muestreo
-		a = T / (0.1 + T); //Cte. de tiempo para filtros (depende de T)
-	};
-	~HID() {};
+	bool BD(ushort Bit) { return wButtonsDown & Bit; } //Boton Down codificado en Bit
+	bool BU(ushort Bit) { return wButtonsUp & Bit; } //Boton Up codificado en Bit
+	bool GRLJ() { return (Ro == CUADRANTE3); } //Gesto de Rotación del LeftJoy
+
+	HID(float t); //Constructor que recoge el periodo de muestreo
+	~HID();
+
 	void Actualiza(); //Actualiza Mando2HID y HID2Mando.
+
 protected:
+
 	//Entradas
 	ushort wButtons; //Botones (Utilizo Codificación Xbox360)
 	ushort wLastButtons; //Botones anteriores (Utilizo Codificación Xbox360)
@@ -49,16 +52,17 @@ protected:
 	float fThumbLXf, fThumbLYf, fThumbRXf, fThumbRYf; //[-1.0,1.0] Filtrado
 	float T; //Perido de actualización
 	float a; //Cte.Tiempo Filtro		const
-				   //Salidas
+
+    //Salidas
 	float fLeftVibration, fRightVibration; //[0.0,1.0] Salida
 	float tLR = 0.0; //Tiempo que queda de vibración en LR
 	float tRR = 0.0; //Tiempo que queda de vibración en RR
-					 //Gestos
+
+	//Gestos
 	ushort wButtonsDown; //EventosDown Botones (Codificación Xbox360?)
 	ushort wButtonsUp; //EventosUp Botones (Codificación Xbox360?)
 	EstadosRotacion Ro; //Estado del gesto de rotación
 	float tRo = 0.0; //Tiempo que queda para el gesto de rotación
-
 
 
 	//Funciones virtuales que se deben reimplementar para cada mando.
