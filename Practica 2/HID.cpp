@@ -4,31 +4,12 @@
 
 HID::HID(float t)
 {
+	T = t / 1000; //Periodo de muestreo
+	a = T / (0.1 + T); //Cte. de tiempo para filtros (depende de T)
 }
-
 
 HID::~HID()
 {
-}
-
-bool HID::gBU(ushort bit)
-{
-	return false;
-}
-
-bool HID::BD(ushort Bit)
-{
-	return false;
-}
-
-bool HID::BU(ushort Bit)
-{
-	return false;
-}
-
-bool HID::GRLJ()
-{
-	return false;
 }
 
 void HID::Actualiza()
