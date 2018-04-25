@@ -35,7 +35,7 @@ public:
 	//Gestos
 	bool BD(ushort Bit) { return wButtonsDown & Bit; } //Boton Down codificado en Bit
 	bool BU(ushort Bit) { return wButtonsUp & Bit; } //Boton Up codificado en Bit
-	bool GRLJ() { return (Ro == CUADRANTE3); } //Gesto de Rotación del LeftJoy
+	bool GRLJ() { return (Ro == CUADRANTE2); } //Gesto de Rotación del LeftJoy
 
 	HID(float t); //Constructor que recoge el periodo de muestreo
 	~HID();
@@ -52,6 +52,8 @@ protected:
 	float fThumbLXf, fThumbLYf, fThumbRXf, fThumbRYf; //[-1.0,1.0] Filtrado
 	float T; //Perido de actualización
 	float a; //Cte.Tiempo Filtro		const
+	const float aV = 0.1;
+	float fVelX, fVelY;
 
     //Salidas
 	float fLeftVibration, fRightVibration; //[0.0,1.0] Salida

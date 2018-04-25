@@ -12,56 +12,56 @@ HIDXBox::~HIDXBox()
 {
 }
 
-bool LeeMando(){
-	Xbox.dwResult = XInputGetState(0, &Xbox.State);
+bool HIDXBox::LeeMando(){
+	XBox.dwResult = XInputGetState(0, &XBox.State);
 
-	if (Xbox.dwResult == ERROR_SUCCESS)
+	if (XBox.dwResult == ERROR_SUCCESS)
 		return true;
 	else return false;
 }
 
-void EscribeMando() {
+void HIDXBox::EscribeMando() {
 
-	Xbox.vibration.wLeftMotorSpeed = (ushort)(fLeftVibration = MAXUINT16);
-	Xbox.vibration.wRightMotorSpeed = (ushort)(fRightVibration = MAXUINT16);
-	XInputGetState(0, &Xbox.vibration);
+	XBox.vibration.wLeftMotorSpeed = (ushort)(fLeftVibration = MAXUINT16);
+	XBox.vibration.wRightMotorSpeed = (ushort)(fRightVibration = MAXUINT16);
+	XInputSetState(0, &XBox.vibration);
 
 }
-void Mando2HID(){
+void HIDXBox::Mando2HID(){
 
-	wButtons = Xbox.State.Gamepad.wButtons;
-	fLeftTrigger = (float)Xbox.State.Gamepad.bLeftTrigger / (float)MAXBYTE;
-	fRightTrigger = (float)Xbox.State.Gamepad.bRightTrigger / (float)MAXBYTE;
+	wButtons = XBox.State.Gamepad.wButtons;
+	fLeftTrigger = (float)XBox.State.Gamepad.bLeftTrigger / (float)MAXBYTE;
+	fRightTrigger = (float)XBox.State.Gamepad.bRightTrigger / (float)MAXBYTE;
 
 	/*
-	Xbox.State.Gamepad.sThumbLX = Xbox.OffState.Gamepad.sThumbLX;
-	Xbox.State.Gamepad.sThumbRX = Xbox.OffState.Gamepad.sThumbRX;
-	Xbox.State.Gamepad.sThumbLY = Xbox.OffState.Gamepad.sThumbLY;
-	Xbox.State.Gamepad.sThumbRY = Xbox.OffState.Gamepad.sThumbRY;
+	XBox.State.Gamepad.sThumbLX = XBox.OffState.Gamepad.sThumbLX;
+	XBox.State.Gamepad.sThumbRX = XBox.OffState.Gamepad.sThumbRX;
+	XBox.State.Gamepad.sThumbLY = XBox.OffState.Gamepad.sThumbLY;
+	XBox.State.Gamepad.sThumbRY = XBox.OffState.Gamepad.sThumbRY;
 	*/
 
 	//Nueva zona muerta joys
-	if (Xbox.State.Gamepad.sThumbLX > INPUT_DEADZONE)
-		Xbox.State.Gamepad.sThumbLX -= INPUT_DEADZONE;
-	else if (Xbox.State.Gamepad.sThumbLX < -INPUT_DEADZONE)
-		Xbox.State.Gamepad.sThumbLX += INPUT_DEADZONE;
-	else Xbox.State.Gamepad.sThumbLX = 0;
+	if (XBox.State.Gamepad.sThumbLX > INPUT_DEADZONE)
+		XBox.State.Gamepad.sThumbLX -= INPUT_DEADZONE;
+	else if (XBox.State.Gamepad.sThumbLX < -INPUT_DEADZONE)
+		XBox.State.Gamepad.sThumbLX += INPUT_DEADZONE;
+	else XBox.State.Gamepad.sThumbLX = 0;
 
-	if (Xbox.State.Gamepad.sThumbLY > INPUT_DEADZONE)
-		Xbox.State.Gamepad.sThumbLY -= INPUT_DEADZONE;
-	else if (Xbox.State.Gamepad.sThumbLY < -INPUT_DEADZONE)
-		Xbox.State.Gamepad.sThumbLY += INPUT_DEADZONE;
-	else Xbox.State.Gamepad.sThumbLY = 0;
+	if (XBox.State.Gamepad.sThumbLY > INPUT_DEADZONE)
+		XBox.State.Gamepad.sThumbLY -= INPUT_DEADZONE;
+	else if (XBox.State.Gamepad.sThumbLY < -INPUT_DEADZONE)
+		XBox.State.Gamepad.sThumbLY += INPUT_DEADZONE;
+	else XBox.State.Gamepad.sThumbLY = 0;
 
-	if (Xbox.State.Gamepad.sThumbRX > INPUT_DEADZONE)
-		Xbox.State.Gamepad.sThumbRX -= INPUT_DEADZONE;
-	else if (Xbox.State.Gamepad.sThumbRX < -INPUT_DEADZONE)
-		Xbox.State.Gamepad.sThumbLX += INPUT_DEADZONE;
-	else Xbox.State.Gamepad.sThumbLX = 0;
+	if (XBox.State.Gamepad.sThumbRX > INPUT_DEADZONE)
+		XBox.State.Gamepad.sThumbRX -= INPUT_DEADZONE;
+	else if (XBox.State.Gamepad.sThumbRX < -INPUT_DEADZONE)
+		XBox.State.Gamepad.sThumbLX += INPUT_DEADZONE;
+	else XBox.State.Gamepad.sThumbLX = 0;
 
-	if (Xbox.State.Gamepad.sThumbRY > INPUT_DEADZONE)
-		Xbox.State.Gamepad.sThumbRY -= INPUT_DEADZONE;
-	else if (Xbox.State.Gamepad.sThumbRY < -INPUT_DEADZONE)
-		Xbox.State.Gamepad.sThumbRY += INPUT_DEADZONE;
-	else Xbox.State.Gamepad.sThumbRY = 0;
+	if (XBox.State.Gamepad.sThumbRY > INPUT_DEADZONE)
+		XBox.State.Gamepad.sThumbRY -= INPUT_DEADZONE;
+	else if (XBox.State.Gamepad.sThumbRY < -INPUT_DEADZONE)
+		XBox.State.Gamepad.sThumbRY += INPUT_DEADZONE;
+	else XBox.State.Gamepad.sThumbRY = 0;
 }
