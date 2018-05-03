@@ -28,5 +28,6 @@ public:
 	bool LeeMando();
 	void EscribeMando();
 	void Mando2HID();
+	void Calibra();
 };
 #endif //!_H_HIDXBOX_H_
