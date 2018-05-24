@@ -101,6 +101,7 @@ void GeneraEfectos(BaseHID* Control)
 		keybd_event(VK_END, 0x0, 0, 0);
 	if (Control->BU(XINPUT_GAMEPAD_B))
 		keybd_event(VK_END, 0x0, KEYEVENTF_KEYUP, 0);
+
 }
 
 VOID CALLBACK TimerCallBack()

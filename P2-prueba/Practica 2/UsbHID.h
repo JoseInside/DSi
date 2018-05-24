@@ -11,12 +11,13 @@
 #ifndef _CG_USBHID_H_
 #define _CG_USBHID_H_
 
+
 //#if defined(WIN32)
 #include <windows.h>
 #include <setupapi.h>
-extern "C" {
+//extern "C" {
 #include <hidsdi.h>
-}
+//}
 //#endif
 
 

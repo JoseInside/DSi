@@ -102,6 +102,8 @@ bool UsbHID::open(int venderID, int productID)
 
 	SetupDiDestroyDeviceInfoList(devInfoSet);
 
+
+
 	return false;
 }
 

@@ -41,7 +41,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -133,7 +133,6 @@
     <ClInclude Include="HIDWii.h" />
     <ClInclude Include="HIDXBox.h" />
     <ClInclude Include="UsbHID.h" />
-    <ClInclude Include="Wiimote.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -141,7 +140,6 @@
     <ClCompile Include="HIDWii.cpp" />
     <ClCompile Include="HIDXBox.cpp" />
     <ClCompile Include="UsbHID.cpp" />
-    <ClCompile Include="Wiimote.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
