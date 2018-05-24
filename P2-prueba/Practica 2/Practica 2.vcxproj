@@ -96,7 +96,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>xinput.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xinput.lib;hid.lib;setupapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -130,12 +130,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="HID.h" />
+    <ClInclude Include="HIDWii.h" />
     <ClInclude Include="HIDXBox.h" />
+    <ClInclude Include="UsbHID.h" />
+    <ClInclude Include="Wiimote.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="HID.cpp" />
+    <ClCompile Include="HIDWii.cpp" />
     <ClCompile Include="HIDXBox.cpp" />
+    <ClCompile Include="UsbHID.cpp" />
+    <ClCompile Include="Wiimote.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

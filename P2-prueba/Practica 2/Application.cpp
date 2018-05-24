@@ -1,12 +1,16 @@
 #include "HIDXBox.h"
+#include "HIDWii.h"
 #include <math.h>
 
 #define T 10 //ms para actualizar
 
 void CALLBACK TimerCallBack();
 
-#define TARGET_XBOX360
+#define TARGET_WII
+//#define TARGET_XBOX360
 #define MAX_CONTROLLERS 4
+
+
 
 #ifdef TARGET_XBOX360
 HIDXBox Control(T);
@@ -16,7 +20,7 @@ HIDPs Control(T);
 HIDWii Control(T);
 #endif
 
-void GeneraEfectos(HIDXBox* Control)
+void GeneraEfectos(BaseHID* Control)
 {
 	POINT pt, pt0;
 	GetCursorPos(&pt);
@@ -108,7 +112,7 @@ VOID CALLBACK TimerCallBack()
 
 int APIENTRY wWinMain(HINSTANCE hInst, HINSTANCE, LPWSTR, int)
 {
-	Control.Calibra();
+	//Control.Calibra();
 	UINT_PTR pTimerxbox;
 	pTimerxbox = SetTimer(NULL, NULL, T, (TIMERPROC)TimerCallBack);
 

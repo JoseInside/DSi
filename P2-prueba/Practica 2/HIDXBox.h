@@ -17,7 +17,7 @@ struct CONTROLLER_STATE
 };
 
 class HIDXBox : 
-	public HID
+	public BaseHID
 {
 private:
 	CONTROLLER_STATE XBox;

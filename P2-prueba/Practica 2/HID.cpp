@@ -2,17 +2,17 @@
 
 
 
-HID::HID(float t)
+BaseHID::BaseHID(float t)
 {
 	T = t / 1000; //Periodo de muestreo
 	a = T / (0.1 + T); //Cte. de tiempo para filtros (depende de T)
 }
 
-HID::~HID()
+BaseHID::~BaseHID()
 {
 }
 
-void HID::Actualiza()
+void BaseHID::Actualiza()
 {
 	wLastButtons = wButtons; //Copia estado de botones
 	bConected = LeeMando(); //Leo Mando

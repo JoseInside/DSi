@@ -2,7 +2,7 @@
 
 
 HIDXBox::HIDXBox(float f) :
-	HID(f)
+	BaseHID(f)
 {
 }
 

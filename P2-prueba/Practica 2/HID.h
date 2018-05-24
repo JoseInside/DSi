@@ -3,7 +3,7 @@
 
 typedef unsigned short ushort;
 
-class HID
+class BaseHID
 {
 
 	enum EstadosRotacion
@@ -37,8 +37,8 @@ public:
 	bool BU(ushort Bit) { return wButtonsUp & Bit; } //Boton Up codificado en Bit
 	bool GRLJ() { return (Ro == CUADRANTE2); } //Gesto de Rotación del LeftJoy
 
-	HID(float t); //Constructor que recoge el periodo de muestreo
-	~HID();
+	BaseHID(float t); //Constructor que recoge el periodo de muestreo
+	~BaseHID();
 
 	void Actualiza(); //Actualiza Mando2HID y HID2Mando.
 
@@ -71,6 +71,7 @@ protected:
 	virtual bool LeeMando() = 0; //Lee estado del mando
 	virtual void EscribeMando() = 0; //Escribe Feeback en mando
 	virtual void Mando2HID() = 0; //Vuelca el estado del mando al HID
+	virtual void Calibra() = 0;
 };
 #endif // !_H_HID_H_
 
